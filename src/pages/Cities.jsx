@@ -1,10 +1,15 @@
+import UnderConstruction from "../assets/under construction.jpeg";
+
 function Cities() {
   return (
-    <div>
-      <div className="absolute bg-black/30 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg- text-5xl font-bold font-mono text-black p-12">
-      <h1>Under construction</h1>
+    <>
+    <div className="absolute top-0 left-0 w-full h-full">
+     
+      <img src={UnderConstruction} alt="Under Construction" className="object-cover w-full h-full z-40"
+      style={{ objectPosition: "5% 40%" }} 
+      />
     </div>
-    </div>
+    </>
   );
 }
 

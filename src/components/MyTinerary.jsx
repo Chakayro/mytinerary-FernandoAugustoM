@@ -1,17 +1,17 @@
 function MyTinerary() {
   return (
-    <div className="lg:block hidden">
-      <div className="absolute top-36 left-32">
-        <h1 className="font-bold font-mono text-black text-4xl ">MyTinerary</h1>
+    <div className="">
+      <div className="absolute lg:top-36 top-125 left-32">
+        <h1 className="font-bold font-mono text-black text-4xl lg:block hidden">MyTinerary</h1>
       </div>
-      <div className="absolute top-56 left-32">
-        <p className="top-4 font-bold font-mono text-black text-2xl">
-          Find your perfect trip,
+      <div className="absolute lg:top-56 top-135 left-32 font-bold font-mono text-black lg:text-2xl text-xl">
+        <p className="top-4 ">
+          Your perfect trip,
         </p>
-        <p className="top-4 font-bold font-mono text-black text-2xl">
+        <p className="top-4">
           designed by insiders
         </p>
-        <p className="top-4 font-bold font-mono text-black text-2xl">
+        <p className="top-4">
           who know and love their cities!
         </p>
       </div>
