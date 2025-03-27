@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Argentina from "../assets/img-ar.jpg";
 import Colombia from "../assets/img-co.jpg";
 import Mexico from "../assets/img-mx.jpg";
@@ -30,6 +30,22 @@ const carouselData = [
 function Carousel() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [numItems, setNumItems] = useState(4);
+  const intervalRef = useRef(null); // Usamos useRef para mantener el intervalo
+
+  const startInterval = () => {
+    intervalRef.current = setInterval(() => {
+      setActiveIndex((prev) =>
+        prev < carouselData.length - numItems ? prev + numItems : 0
+      );
+    }, 3000);
+  };
+
+  const clearAndRestartInterval = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+    startInterval();
+  };
 
   useEffect(() => {
     const updateNumItems = () => {
@@ -47,14 +63,12 @@ function Carousel() {
     updateNumItems();
     window.addEventListener("resize", updateNumItems);
 
-    const interval = setInterval(() => {
-      setActiveIndex((prev) =>
-        prev < carouselData.length - numItems ? prev + numItems : 0
-      );
-    }, 5000);
+    startInterval(); // Iniciar el intervalo al montar el componente
 
     return () => {
-      clearInterval(interval);
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
       window.removeEventListener("resize", updateNumItems);
     };
   }, [numItems]);
@@ -63,17 +77,19 @@ function Carousel() {
     setActiveIndex((prev) =>
       prev < carouselData.length - numItems ? prev + numItems : 0
     );
+    clearAndRestartInterval();
   };
 
   const handlePrev = () => {
     setActiveIndex((prev) =>
       prev > 0 ? prev - numItems : carouselData.length - numItems
     );
+    clearAndRestartInterval();
   };
 
   return (
     <>
-      <div className="absolute bottom-0 h-1/5 end-0  lg:w-10/12 md:w-9/12 w-7/12 xs:w-auto flex">
+      <div className="absolute bottom-0 h-1/5 end-0 lg:w-10/12 md:w-9/12 w-7/12 xs:w-auto flex">
         <div className="flex flex-col h-full">
           <div className="h-1/2 w-11 bg-neutral-300/45 flex items-center justify-center backdrop-blur-sm">
             <button onClick={handleNext} className="text-4xl">

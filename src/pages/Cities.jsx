@@ -1,14 +1,15 @@
-import UnderConstruction from "../assets/under construction.jpeg";
-
+import ComponentCity from "../components/ComponentCity";
+import City from "../assets/Cities.jpg";
 function Cities() {
   return (
     <>
-    <div className="absolute top-0 left-0 w-full h-full">
+       <ComponentCity />
+      <div className="h-dvh w-screen object-cover">
+
+        <img src={City} alt="" className="h-dvh w-screen object-cover" />
      
-      <img src={UnderConstruction} alt="Under Construction" className="object-cover w-full h-full z-40"
-      style={{ objectPosition: "5% 40%" }} 
-      />
-    </div>
+      </div>
+   
     </>
   );
 }
